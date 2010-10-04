@@ -180,9 +180,11 @@ public abstract class BaseCamera extends NoSearchActivity implements View.OnClic
             return result;
 
         }
-
-        float[] result = new float[1];
-        result[0] = 0.0f;
+        //1.0, 1.2, 1.44, 1.6, 1.8, 2.0
+        float result[] = new float[mZoomMax + 1];
+        for (int i = 0, n = result.length; i < n; ++i) {
+            result[i] = 1 + i * 0.2f;
+        }
         return result;
     }
 
@@ -281,19 +283,6 @@ public abstract class BaseCamera extends NoSearchActivity implements View.OnClic
 
         @Override
         public boolean onDoubleTap(MotionEvent e) {
-            // Perform zoom only when preview is started and snapshot is not in
-            // progress.
-            if (mFocusing || mPausing || !mPreviewing || mHeadUpDisplay == null) {
-                return false;
-            }
-
-            if (mZoomValue < mZoomMax) {
-                // Zoom in to the maximum.
-                mZoomValue = mZoomMax;
-            } else {
-                mZoomValue = 0;
-            }
-            mHeadUpDisplay.setZoomIndex(mZoomValue);
             return true;
         }
     }
