@@ -111,12 +111,12 @@
 
     <!-- The Video length settings in preference -->
     <string name="pref_video_quality_title">Video quality</string>
-    <string name="pref_video_quality_default" translatable="false">high</string>
-    <string name="pref_video_quality_entry_high">High (60m)</string>
-    <string name="pref_video_quality_entry_mid">Middle (60m)</string>
+    <string name="pref_video_quality_default" translatable="false">mid</string>
+    <string name="pref_video_quality_entry_high">High (30m)</string>
+    <string name="pref_video_quality_entry_mid">Normal (30m)</string>
     <string name="pref_video_quality_entry_low">Low (30m)</string>
     <string name="pref_video_quality_entry_mms">MMS (Low, 30s)</string>
-    <string name="pref_video_quality_entry_youtube">YouTube (High, 15m)</string>
+    <string name="pref_video_quality_entry_youtube">YouTube (Normal, 15m)</string>
     <string name="pref_video_quality_entry_custom">Custom</string>
     <!-- Default video quality setting. A numerical value. -->
     <string name="pref_camera_videosize_default" translatable="false">qvga</string>
