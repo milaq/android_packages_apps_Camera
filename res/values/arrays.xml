@@ -20,6 +20,7 @@
 
     <string-array name="pref_video_quality_entries" translatable="false">
         <item>@string/pref_video_quality_entry_high</item>
+        <item>@string/pref_video_quality_entry_mid</item>
         <item>@string/pref_video_quality_entry_low</item>
         <item>@string/pref_video_quality_entry_mms</item>
         <item>@string/pref_video_quality_entry_youtube</item>
@@ -28,6 +29,7 @@
 
     <string-array name="pref_video_quality_entryvalues" translatable="false">
         <item>high</item>
+        <item>mid</item>
         <item>low</item>
         <item>mms</item>
         <item>youtube</item>
@@ -82,7 +84,7 @@
 
     <string-array name="pref_camera_audioencoder_entryvalues" translatable="false">
         <item>amrnb</item>
-        <item>qcelp</item>
+        <item>amrwb</item>
         <item>evrc</item>
         <item>aac</item>
     </string-array>
@@ -105,6 +107,7 @@
 
     <array name="video_quality_icons" translatable="false">
         <item>@drawable/ic_viewfinder_video_quality_high</item>
+        <item>@drawable/ic_viewfinder_video_quality_mid</item>
         <item>@drawable/ic_viewfinder_video_quality_low</item>
         <item>@drawable/ic_viewfinder_video_quality_mms</item>
         <item>@drawable/ic_viewfinder_video_quality_youtube</item>

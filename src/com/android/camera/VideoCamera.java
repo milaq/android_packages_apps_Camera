@@ -240,6 +240,9 @@ public class VideoCamera extends BaseCamera implements
                 case MediaRecorder.AudioEncoder.AMR_NB:
                     AUDIO_ENCODER_TABLE.put("amrnb", MediaRecorder.AudioEncoder.AMR_NB);
                     break;
+                case MediaRecorder.AudioEncoder.AMR_WB:
+                    AUDIO_ENCODER_TABLE.put("amrwb", MediaRecorder.AudioEncoder.AMR_WB);
+                    break;
                 case MediaRecorder.AudioEncoder.AAC:
                     AUDIO_ENCODER_TABLE.put("aac", MediaRecorder.AudioEncoder.AAC);
                     break;
@@ -757,14 +760,12 @@ public class VideoCamera extends BaseCamera implements
 
         if(!"custom".equalsIgnoreCase(quality)){
 
-            boolean videoQualityHigh = CameraSettings.getVideoQuality(quality);
+            int videoQualityProfile = CameraSettings.getVideoQuality(quality);
 
             // Set video quality.
             Intent intent = getIntent();
             if (intent.hasExtra(MediaStore.EXTRA_VIDEO_QUALITY)) {
-                int extraVideoQuality =
-                        intent.getIntExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
-                videoQualityHigh = (extraVideoQuality > 0);
+                videoQualityProfile = intent.getIntExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
             }
 
             // Set video duration limit. The limit is read from the preference,
@@ -777,7 +778,7 @@ public class VideoCamera extends BaseCamera implements
                 mMaxVideoDurationInMs =
                         CameraSettings.getVidoeDurationInMillis(quality);
             }
-            mProfile = CameraSettings.getCamcorderProfile(videoQualityHigh);
+            mProfile = CameraSettings.getCamcorderProfile(videoQualityProfile);
         } else {
             mProfile = null;
 
@@ -1828,6 +1829,9 @@ public class VideoCamera extends BaseCamera implements
                 showCameraBusyAndFinish();
             }
         } else {
+            if (!mMediaRecorderRecording) {
+                releaseMediaRecorder();
+            }
             setCameraParameters();
         }
     }

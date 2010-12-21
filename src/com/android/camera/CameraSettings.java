@@ -66,6 +66,7 @@ public class CameraSettings {
     public static final String QUICK_CAPTURE_OFF = "off";
 
     private static final String VIDEO_QUALITY_HIGH = "high";
+    private static final String VIDEO_QUALITY_MID = "mid";
     private static final String VIDEO_QUALITY_MMS = "mms";
     private static final String VIDEO_QUALITY_YOUTUBE = "youtube";
 
@@ -391,14 +392,21 @@ public class CameraSettings {
         editor.commit();
     }
 
-    public static boolean getVideoQuality(String quality) {
-        return VIDEO_QUALITY_YOUTUBE.equals(quality) || VIDEO_QUALITY_HIGH.equals(quality);
+    public static int getVideoQuality(String quality) {
+        int profile = CamcorderProfile.QUALITY_LOW;
+	if (VIDEO_QUALITY_YOUTUBE.equals(quality) || VIDEO_QUALITY_MID.equals(quality)){
+            profile = CamcorderProfile.QUALITY_MID;
+        } else {
+            if (VIDEO_QUALITY_HIGH.equals(quality)) {
+                profile = CamcorderProfile.QUALITY_HIGH;
+            }
+        }
+        return profile;
     }
 
-    public static CamcorderProfile getCamcorderProfile(boolean highQuality) {
-        int profile = CamcorderProfile.QUALITY_LOW;
-        if (highQuality) {
-            profile = isMainCamera() ? CamcorderProfile.QUALITY_HIGH : CamcorderProfile.QUALITY_FRONT;
+    public static CamcorderProfile getCamcorderProfile(int profile) {
+        if (!isMainCamera()) {
+            profile = CamcorderProfile.QUALITY_FRONT;
         }
         return CamcorderProfile.get(profile);
     }
