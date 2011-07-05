@@ -107,11 +107,15 @@ public abstract class BaseCamera extends NoSearchActivity {
         if (mFocusRectangle == null)
             return;
 
-        mFocusRectangle.setVisibility(View.VISIBLE);
         PreviewFrameLayout frameLayout = (PreviewFrameLayout) findViewById(R.id.frame_layout);
         int x = frameLayout.getActualWidth() / 2;
         int y = frameLayout.getActualHeight() / 2;
-        updateTouchFocus(x, y);
+        if (mFocusMode.equals(CameraSettings.FOCUS_MODE_TOUCH)) {
+            updateTouchFocus(x, y);
+        } else {
+            mFocusRectangle.setPosition(x, y);
+        }
+
     }
 
     private class FocusGestureListener extends GestureDetector.SimpleOnGestureListener {
@@ -136,7 +140,8 @@ public abstract class BaseCamera extends NoSearchActivity {
                 @Override
                 public void onAutoFocus(boolean success, android.hardware.Camera camera) {
                     if (mFocusState == FOCUSING) {
-                        mFocusRectangle.showSuccess();
+                        if (success) mFocusRectangle.showSuccess();
+                        else mFocusRectangle.showFail();
                         mFocusState = FOCUS_NOT_STARTED;
                     }
                 }
@@ -156,7 +161,21 @@ public abstract class BaseCamera extends NoSearchActivity {
         Log.d(LOG_TAG, "updateTouchFocus x=" + x + " y=" + y);
         mFocusRectangle.setVisibility(View.VISIBLE);
         mFocusRectangle.setPosition(x, y);
-        mParameters.set("touch-focus", x + "," + y);
+        if (mParameters.get("nv-max-areas-to-focus") != null) {
+            /* Example region log output (for approx middle):
+             * NvOmxCameraSettings( 1029): Setting focus region #1 (left,top,right,bottom):
+             * (0xffffe400 (-0.109375), 0xffffcdde (-0.195831), 0x2400 (0.140625), 0x2333 (0.137497))
+             *
+             * - The region is divided into four quadrants, coords go from -1 to 1 with 0 being the 
+             *   axis intersection
+             * Arguments to configure a region are: 
+             *      regionId,x-for-ul-corner,y-for-ul-corner,width,height
+             */
+            int size = 80;
+            mParameters.set("nv-areas-to-focus", "1,"+(x-(size/2))+","+(y-(size/2))+","+size+","+size);
+        } else {
+            mParameters.set("touch-focus", x + "," + y);
+        }
         mCameraDevice.setParameters(mParameters);
     }
 
