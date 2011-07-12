@@ -19,9 +19,9 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent">
     <FrameLayout android:id="@+id/framegl"
-            android:layout_width="740px"
-            android:layout_height="match_parent"
-            android:layout_gravity="left"/>
+        android:layout_width="740px"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"/>
     <RelativeLayout android:id="@+id/control_bar"
             android:orientation="vertical"
             android:layout_height="match_parent"
@@ -62,7 +62,7 @@
                     android:src="@drawable/btn_ic_mode_switch_camera"/>
         </LinearLayout>
 
-        <com.android.camera.ShutterButton android:id="@+id/shutter_button"
+    <com.android.camera.ShutterButton android:id="@+id/shutter_button"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_height="wrap_content"
@@ -74,3 +74,5 @@
                 android:background="@drawable/btn_shutter"/>
     </RelativeLayout>
 </LinearLayout>
+
+
