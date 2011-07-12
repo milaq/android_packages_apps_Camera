@@ -951,7 +951,7 @@ public class Camera extends BaseCamera {
     }
 
     private void initializeHeadUpDisplay() {
-        FrameLayout frame = (FrameLayout) findViewById(R.id.frame);
+        FrameLayout frame = (FrameLayout) findViewById(R.id.framegl);
         mGLRootView = new GLRootView(this);
         frame.addView(mGLRootView);
 

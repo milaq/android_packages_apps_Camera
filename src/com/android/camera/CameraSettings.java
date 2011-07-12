@@ -65,6 +65,7 @@ public class CameraSettings {
     public static final String QUICK_CAPTURE_ON = "on";
     public static final String QUICK_CAPTURE_OFF = "off";
 
+    private static final String VIDEO_QUALITY_WIDE = "wide";
     private static final String VIDEO_QUALITY_HIGH = "high";
     private static final String VIDEO_QUALITY_MID = "mid";
     private static final String VIDEO_QUALITY_MMS = "mms";
@@ -399,6 +400,9 @@ public class CameraSettings {
         } else {
             if (VIDEO_QUALITY_HIGH.equals(quality)) {
                 profile = CamcorderProfile.QUALITY_HIGH;
+            }
+            else if (VIDEO_QUALITY_WIDE.equals(quality)) {
+                profile = CamcorderProfile.QUALITY_WIDE;
             }
         }
         return profile;

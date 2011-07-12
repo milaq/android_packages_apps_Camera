@@ -584,7 +584,7 @@ public class VideoCamera extends BaseCamera implements
     }
 
     private synchronized void initializeHeadUpDisplay() {
-        FrameLayout frame = (FrameLayout) findViewById(R.id.frame);
+        FrameLayout frame = (FrameLayout) findViewById(R.id.framegl);
         mGLRootView = new GLRootView(this);
         frame.addView(mGLRootView);
 
