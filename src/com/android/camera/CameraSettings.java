@@ -159,8 +159,9 @@ public class CameraSettings {
     }
 
     public static boolean hasTouchFocusSupport(Parameters parameters) {
-        // Not the best way to check, but works for HTC cameras
-        return parameters.get("taking-picture-zoom") != null && isMainCamera();
+        // Not the best way to check, but works for HTC and MOTO cameras
+        if (parameters.get("taking-picture-zoom") != null || parameters.get("mot-areas-to-focus") != null) return true;
+	else return false;
     }
 
     private void initPreference(PreferenceGroup group) {

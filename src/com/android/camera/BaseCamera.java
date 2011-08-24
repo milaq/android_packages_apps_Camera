@@ -403,7 +403,15 @@ public abstract class BaseCamera extends NoSearchActivity implements View.OnClic
         Log.d(TAG, "updateTouchFocus x=" + x + " y=" + y);
         mFocusRectangle.setVisibility(View.VISIBLE);
         mFocusRectangle.setPosition(x, y);
-        mParameters.set("touch-focus", x + "," + y);
+        if (mParameters.get("mot-max-areas-to-focus") != null) {
+            /* Motorola's libcamera uses the same format as Nvidia's:
+             * regionId,left,top,width,height
+             */
+            int size = 80;
+            mParameters.set("mot-areas-to-focus", "1,"+(x-(size/2))+","+(y-(size/2))+","+size+","+size);
+	} else {
+            mParameters.set("touch-focus", x + "," + y);
+        }
         setCameraParameters();
     }
 
