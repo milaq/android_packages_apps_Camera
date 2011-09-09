@@ -61,6 +61,7 @@ public class CameraSettings {
     public static final String KEY_BRIGHTNESS = "pref_camera_brightness_key";
     public static final String KEY_VIDEOCAMERA_FOCUS_MODE = "pref_camera_video_focusmode_key";
     public static final String KEY_STABLESHOT = "pref_camera_stableshot_key";
+    public static final String KEY_FOCUS_BEEP = "pref_camera_focusbeep_key";
 
     public static final String QUICK_CAPTURE_ON = "on";
     public static final String QUICK_CAPTURE_OFF = "off";
@@ -173,6 +174,7 @@ public class CameraSettings {
         ListPreference sceneMode = group.findPreference(KEY_SCENE_MODE);
         ListPreference flashMode = group.findPreference(KEY_FLASH_MODE);
         ListPreference focusMode = group.findPreference(KEY_FOCUS_MODE);
+        ListPreference focusBeep = group.findPreference(KEY_FOCUS_BEEP);
         ListPreference videoFlashMode =
                 group.findPreference(KEY_VIDEOCAMERA_FLASH_MODE);
         ListPreference videoFocusMode =

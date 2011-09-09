@@ -476,4 +476,16 @@
          <item>@string/pref_camera_stableshot_value_3</item>
      </string-array>
 
+     <!-- Focusbeep settings entries -->
+     <string-array name="pref_camera_focusbeep_entries">
+         <item>@string/pref_camera_focusbeep_entry_off</item>
+         <item>@string/pref_camera_focusbeep_entry_on</item>
+     </string-array>
+
+     <!-- Focusbeep settings values -->
+     <string-array name="pref_camera_focusbeep_entryvalues">
+         <item>off</item>
+         <item>on</item>
+     </string-array>
+
 </resources>

@@ -50,7 +50,8 @@ public class CameraHeadUpDisplay extends HeadUpDisplay {
                 CameraSettings.KEY_ANTIBANDING,
                 CameraSettings.KEY_STABLESHOT,
                 CameraSettings.KEY_PICTURE_SIZE,
-                CameraSettings.KEY_JPEG_QUALITY);
+                CameraSettings.KEY_JPEG_QUALITY,
+                CameraSettings.KEY_FOCUS_BEEP);
 
         mOtherSettings = new OtherSettingsIndicator(context, prefs);
         mOtherSettings.setOnRestorePreferencesClickedRunner(new Runnable() {

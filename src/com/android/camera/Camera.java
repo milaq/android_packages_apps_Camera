@@ -1370,6 +1370,7 @@ public class Camera extends BaseCamera {
                                            // (check mSmoothZoomSupported above)
             implements android.hardware.Camera.AutoFocusCallback {
         public void onAutoFocus(boolean focused, android.hardware.Camera camera) {
+            String mFocusBeep = mPreferences.getString(CameraSettings.KEY_FOCUS_BEEP, getString(R.string.pref_camera_focusbeep_default));
             mFocusCallbackTime = System.currentTimeMillis();
             mAutoFocusTime = mFocusCallbackTime - mFocusStartTime;
             Log.e(TAG, "<PROFILE> mAutoFocusTime = " + mAutoFocusTime + "ms");
@@ -1388,7 +1389,7 @@ public class Camera extends BaseCamera {
                 // Do not take the picture now.
                 if (classicAutoMode || "macro".equals(mFocusMode)) {
                     ToneGenerator tg = mFocusToneGenerator;
-                    if (tg != null) {
+                    if (tg != null && mFocusBeep.equals("on")) {
                         tg.startTone(ToneGenerator.TONE_PROP_BEEP2);
                     }
                 }
